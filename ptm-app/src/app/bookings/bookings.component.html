@@ -1,0 +1,11 @@
+<h2>Booking for {{ bookings[0].bookingday }}</h2>
+<ul class="bookings">
+<!--  <li>
+    <span class="single_booking">Id {{bookings[0].id}}:</span> {{bookings[0].starttime}}-{{bookings[0].endtime}} {{bookings[0].activity.activityName}}
+  </li>-->
+  <li *ngFor="let booking of bookings">
+    <a routerLink="/detail/{{booking.id}}">
+      <span class="single_booking">Id {{booking.id}}:</span> {{booking.activity.activityName}}
+    </a>
+  </li>
+</ul>

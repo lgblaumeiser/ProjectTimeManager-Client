@@ -1,0 +1,8 @@
+<div *ngIf="booking">
+  <h2>{{ booking.id }} Details</h2>
+  <div><label>starttime: <input [(ngModel)]="booking.starttime" placeholder="starttime" /></label></div>
+  <div><label>endtime: <input [(ngModel)]="booking.endtime" placeholder="endtime" /></label></div>
+  <div><span>activity: </span>{{ booking.activity.activityName }} ({{ booking.activity.bookingNumber }})</div>
+</div>
+<button (click)="goBack()">go back</button>
+<button (click)="save()">save</button>
