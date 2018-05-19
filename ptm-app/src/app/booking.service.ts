@@ -21,7 +21,6 @@ export class BookingService {
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   getBookings(): Observable<Booking[]> {
-    this.log(`BookingService: fetch bookings: ${this.bookingsUrl}`);
     return this.http.get<Booking[]>(this.bookingsUrl).pipe(
       tap(bookings => this.log('fetched bookings')),
       catchError(this.handleError('getBookings', []))
@@ -29,7 +28,6 @@ export class BookingService {
   }
 
   getBooking(id: number): Observable<Booking> {
-    this.log(`BookingService: fetched booking id=${id}`);
     return this.http.get<Booking>(`${this.bookingsUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched booking id=${id}`)),
       catchError(this.handleError<Booking>(`getBooking id=${id}`))
@@ -43,9 +41,9 @@ export class BookingService {
     );
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a BookingService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('HeroService: ' + message);
+    this.messageService.add('BookingService: ' + message);
   }
 
   /**

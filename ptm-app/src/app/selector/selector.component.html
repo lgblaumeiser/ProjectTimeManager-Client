@@ -1,0 +1,4 @@
+<h2>Day and User Selection</h2>
+<div><label>Current Day:</label><input [(ngModel)]="day" (keyup.enter)="onSelect()" placeholder="day" /></div>
+<div><label>Current User:</label><input [(ngModel)]="user" (keyup.enter)="onSelect()" placeholder="user" /></div>
+<button (click)="onSelect()">Select</button>

@@ -1,0 +1,32 @@
+h2 {
+  font-size: 1.1em;
+  margin-top: 0;
+  padding-top: 0;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+  font-size: 0.8em;
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+    border: 1px solid DarkOliveGreen;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: LightGreen;}
+
+tr:hover {background-color: DarkOliveGreen;}
+
+th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    background-color: Green;
+    color: white;
+}
+
