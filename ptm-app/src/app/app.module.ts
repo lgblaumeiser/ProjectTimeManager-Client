@@ -1,3 +1,8 @@
+/*
+ * Copyright by Lars Geyer-Blaumeiser <lgblaumeiser@gmail.com>
+ *
+ * Licensed under MIT license
+ */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';

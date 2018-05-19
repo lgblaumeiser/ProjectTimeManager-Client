@@ -1,3 +1,8 @@
+/*
+ * Copyright by Lars Geyer-Blaumeiser <lgblaumeiser@gmail.com>
+ *
+ * Licensed under MIT license
+ */
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 describe('AppComponent', () => {

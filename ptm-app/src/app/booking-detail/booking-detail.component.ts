@@ -1,3 +1,8 @@
+/*
+ * Copyright by Lars Geyer-Blaumeiser <lgblaumeiser@gmail.com>
+ *
+ * Licensed under MIT license
+ */
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';

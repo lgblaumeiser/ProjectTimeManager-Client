@@ -1,3 +1,8 @@
+/*
+ * Copyright by Lars Geyer-Blaumeiser <lgblaumeiser@gmail.com>
+ *
+ * Licensed under MIT license
+ */
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 

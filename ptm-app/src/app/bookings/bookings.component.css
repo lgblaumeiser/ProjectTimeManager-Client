@@ -1,4 +1,8 @@
-/* HeroesComponent's private CSS styles */
+/*
+ * Copyright by Lars Geyer-Blaumeiser <lgblaumeiser@gmail.com>
+ *
+ * Licensed under MIT license
+ */
 .heroes {
   margin: 0 0 2em 0;
   list-style-type: none;
