@@ -27,7 +27,7 @@ export class BookingService {
 
   getBookings(day: string): Observable<Booking[]> {
     return this.http.get<Booking[]>(`${this.bookingsUrl}${day}`).pipe(
-      tap(bookings => this.log(`fetched bookings for day ${this.day}`)),
+      tap(bookings => this.log(`fetched bookings for day ${day}`)),
       catchError(this.handleError('getBookings', []))
     );
   }
