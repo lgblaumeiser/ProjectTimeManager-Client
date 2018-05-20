@@ -10,6 +10,10 @@ import { Booking } from '../booking';
 
 import { BookingService } from '../booking.service';
 
+import { DayService } from '../day.service';
+
+import { MessageService } from '../message.service';
+
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
@@ -17,14 +21,26 @@ import { BookingService } from '../booking.service';
 })
 export class BookingsComponent implements OnInit {
   bookings: Booking[];
+  bookingday: string;
+  selectedBooking: Booking;
 
-  constructor(private bookingService: BookingService) { }
+  constructor(private bookingService: BookingService, private dayService: DayService, private messageService: MessageService) { }
 
   ngOnInit() {
+    this.bookingday = this.dayService.getDay();
     this.getBookings();
+    this.log(`Component Initialized, day: ${this.bookingday}`);
   }
 
   getBookings(): void {
-    this.bookingService.getBookings().subscribe(bookings => this.bookings = bookings);
+    this.bookingService.getBookings(this.bookingday).subscribe(bookings => this.bookings = bookings);
+  }
+
+  private log(message: string) {
+    this.messageService.add('BookingsComponent: ' + message);
+  }
+
+  onSelect(booking: Booking): void {
+    this.selectedBooking = booking;
   }
 }

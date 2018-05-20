@@ -5,8 +5,11 @@
  */
 import { Component, OnInit, Input } from '@angular/core';
 
+import { tap } from 'rxjs/operators';
+
 import { DayService } from '../day.service';
 import { UserService } from '../user.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-selector',
@@ -19,16 +22,19 @@ export class SelectorComponent implements OnInit {
 
   constructor(
     private dayService: DayService,
-    private userService: UserService
+    private userService: UserService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.getDay();
     this.getUser();
+    this.log(`Initialized, day: ${this.day}`);
   }
 
   getDay(): void {
-    this.dayService.getDay().subscribe(day => this.day = day);
+    this.day = this.dayService.getDay();
+    this.dayService.getDayObs().subscribe(day => this.day = day);
   }
 
   getUser(): void {
@@ -38,5 +44,9 @@ export class SelectorComponent implements OnInit {
   onSelect(): void {
     this.dayService.setDay(this.day);
     this.userService.setUser(this.user);
+  }
+
+  private log(message: string) {
+    this.messageService.add('SelectorComponent: ' + message);
   }
 }

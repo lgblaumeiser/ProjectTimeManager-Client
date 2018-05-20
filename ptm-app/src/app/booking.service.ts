@@ -21,32 +21,24 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class BookingService {
-  private bookingsUrl = 'http://localhost:8080/bookings/2017-07-26';
+  private bookingsUrl = 'http://localhost:8080/bookings/';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
-  getBookings(): Observable<Booking[]> {
-    return this.http.get<Booking[]>(this.bookingsUrl).pipe(
-      tap(bookings => this.log('fetched bookings')),
+  getBookings(day: string): Observable<Booking[]> {
+    return this.http.get<Booking[]>(`${this.bookingsUrl}${day}`).pipe(
+      tap(bookings => this.log(`fetched bookings for day ${this.day}`)),
       catchError(this.handleError('getBookings', []))
     );
   }
 
-  getBooking(id: number): Observable<Booking> {
-    return this.http.get<Booking>(`${this.bookingsUrl}/${id}`).pipe(
-      tap(_ => this.log(`fetched booking id=${id}`)),
-      catchError(this.handleError<Booking>(`getBooking id=${id}`))
-    );
-  }
-
-  updateBooking(booking: Booking): Observable<any> {
-    return this.http.put(`${this.bookingsUrl}/${booking.id}`, booking, httpOptions).pipe(
+/*  updateBooking(booking: Booking): Observable<any> {
+    return this.http.put(`${this.bookingsUrl}${this.day}/${booking.id}`, booking, httpOptions).pipe(
       tap(_ => this.log(`updated booking id=${booking.id}`)),
       catchError(this.handleError<any>('updateBooking'))
     );
-  }
+  }*/
 
-  /** Log a BookingService message with the MessageService */
   private log(message: string) {
     this.messageService.add('BookingService: ' + message);
   }

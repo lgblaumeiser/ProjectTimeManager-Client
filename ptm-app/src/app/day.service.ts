@@ -12,23 +12,37 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class DayService {
-  private currentDay: Subject<string>;
-  private currentMonth: Subject<string>;
+  private currentDay: string;
+  private currentMonth:string;
+  private currentDaySjt: Subject<string>;
+  private currentMonthSjt: Subject<string>;
   private currentDayObs: Observable<string>;
   private currentMonthObs: Observable<string>;
 
   constructor(private messageService: MessageService) {
-    this.currentDay = new Subject<string>();
-    this.currentDayObs = this.currentDay.asObservable();
-    this.currentMonth = new Subject<string>();
-    this.currentMonthObs = this.currentMonth.asObservable();
+    this.currentDaySjt = new Subject<string>();
+    this.currentDayObs = this.currentDaySjt.asObservable();
+    this.currentMonthSjt = new Subject<string>();
+    this.currentMonthObs = this.currentMonthSjt.asObservable();
+
+    var today = new Date();
+    var currentDayString = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    this.setDay(currentDayString);
   }
 
-  getDay(): Observable<string> {
-    return this.currentDayObs
+  getDay(): string {
+    return this.currentDay;
   }
 
-  getMonth(): Observable<string> {
+  getDayObs(): Observable<string> {
+    return this.currentDayObs;
+  }
+
+  getMonth(): string {
+    return this.currentMonth;
+  }
+
+  getMonthObs(): Observable<string> {
     return this.currentMonthObs;
   }
 
@@ -40,8 +54,10 @@ export class DayService {
   setDay(newDay: string): void {
     this.log(`New day: ${newDay}, new month: ${newDay.substring(0, 7)}`);
     if(newDay.length == 10) {
-      this.currentDay.next(newDay);
-      this.currentMonth.next(newDay.substring(0, 7));
+      this.currentDay = newDay;
+      this.currentMonth = newDay.substring(0, 7);
+      this.currentDaySjt.next(this.currentDay);
+      this.currentMonthSjt.next(this.currentMonth);
     }
   }
 }

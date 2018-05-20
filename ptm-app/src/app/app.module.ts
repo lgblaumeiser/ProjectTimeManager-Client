@@ -18,6 +18,7 @@ import { SelectorComponent } from './selector/selector.component';
 import { OverviewHoursDayComponent } from './overview-hours-day/overview-hours-day.component';
 import { OverviewHoursWorkedComponent } from './overview-hours-worked/overview-hours-worked.component';
 import { OverviewHoursProjectComponent } from './overview-hours-project/overview-hours-project.component';
+import { ActivitiesComponent } from './activities/activities.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { OverviewHoursProjectComponent } from './overview-hours-project/overview
     SelectorComponent,
     OverviewHoursDayComponent,
     OverviewHoursWorkedComponent,
-    OverviewHoursProjectComponent
+    OverviewHoursProjectComponent,
+    ActivitiesComponent
   ],
   imports: [
     BrowserModule,

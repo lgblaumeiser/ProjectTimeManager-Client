@@ -4,13 +4,12 @@
  * Licensed under MIT license
  */
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { Activity } from '../activity';
 import { Booking } from '../booking';
 
 import { BookingService }  from '../booking.service';
+import { DayService } from '../day.service';
 
 @Component({
   selector: 'app-booking-detail',
@@ -20,26 +19,22 @@ import { BookingService }  from '../booking.service';
 export class BookingDetailComponent implements OnInit {
   @Input() booking: Booking;
 
-  constructor(
-    private route: ActivatedRoute,
-    private bookingService: BookingService,
-    private location: Location
-  ) {}
-
-  ngOnInit() {
-    this.getBooking();
+  constructor(private bookingService: BookingService, private dayService: DayService) {
+    this.booking = new Booking();
+    this.booking.starttime = '';
+    this.booking.endtime = '';
+    this.booking.bookingday = this.dayService.getDay();
+    this.booking.user = '';
+    this.booking.comment = '';
+    this.booking.id = -1;
   }
 
-  getBooking(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.bookingService.getBooking(id).subscribe(booking => this.booking = booking);
+  ngOnInit() { }
+
+  add(): void {
   }
 
-  goBack(): void {
-    this.location.back();
+  change(): void {
+//    this.bookingService.updateBooking(this.booking).subscribe(() => this.goBack());
   }
-
-  save(): void {
-    this.bookingService.updateBooking(this.booking).subscribe(() => this.goBack());
- }
 }

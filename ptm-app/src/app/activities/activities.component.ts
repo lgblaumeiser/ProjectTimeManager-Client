@@ -6,13 +6,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-activities',
+  templateUrl: './activities.component.html',
+  styleUrls: ['./activities.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class ActivitiesComponent implements OnInit {
+
   constructor() { }
 
   ngOnInit() {
   }
+
 }

@@ -26,7 +26,9 @@ export class OverviewHoursDayComponent implements OnInit {
   }
 
   getAnalysisData(): void {
-    this.dayService.getDay().subscribe(
+    this.analysisDataService.getProjectHours(this.dayService.getDay())
+      .subscribe(analysisData => this.analysisData = analysisData);
+    this.dayService.getDayObs().subscribe(
       newDay => this.analysisDataService.getProjectHours(newDay)
         .subscribe(analysisData => this.analysisData = analysisData));
   }
