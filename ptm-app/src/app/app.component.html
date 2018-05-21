@@ -3,15 +3,17 @@
 
  Licensed under MIT license
 -->
-<div style="text-align:center">
-  <h1>
-    {{ title }}!
-  </h1>
+<h1>{{ title }}</h1>
+<div class="row">
+  <div class="block3"><app-selector></app-selector></div>
+  <div class="block3"><app-bookings></app-bookings></div>
+  <div class="block3"><app-overview-hours-day></app-overview-hours-day></div>
 </div>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/bookings">Bookings</a>
-  <a routerLink="/activities">Activities</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<div class="row">
+  <div class="block2"><app-overview-hours-project></app-overview-hours-project></div>
+  <div class="block2"> <app-activities></app-activities></div>
+</div>
+<div class="row">
+  <div class="block2"> <app-overview-hours-worked></app-overview-hours-worked></div>
+  <div class="block2"> <app-messages></app-messages></div>
+</div>

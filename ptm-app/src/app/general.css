@@ -1,0 +1,109 @@
+/*
+ * Copyright by Lars Geyer-Blaumeiser <lgblaumeiser@gmail.com>
+ *
+ * Licensed under MIT license
+ */
+
+h1 {
+  font-size: 1.3em;
+  color: DarkSlateGrey;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  font-size: 1.1em;
+  color: DarkSlateGrey;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.subpart {
+  margin-top: 15px;
+}
+
+.row {
+    display: table;
+    width: 100%;
+    overflow: hidden;
+}
+
+.block2 {
+    background-color: Lavender;
+    min-width: 44%;
+    float: left;
+    margin: 1%;
+    display: table-cell;
+    padding: 1%;
+    padding-bottom: 99999px;
+    margin-bottom: -99985px;
+}
+
+.block3 {
+    background-color: Lavender;
+    min-width: 28%;
+    float: left;
+    margin: 1%;
+    display: table-cell;
+    padding: 1%;
+    padding-bottom: 99999px;
+    margin-bottom: -99985px;
+}
+
+div {
+  font-size: 0.9em;
+  font-family:Arial, Helvetica, sans-serif;
+  align-items: center}
+
+label{
+  display: inline-block;
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: left;
+}
+
+input {
+  font-size: 1em;
+  display: inline-block;
+  float: left;
+}
+
+select {
+  font-size: 1em;
+  display: inline-block;
+  float: left;
+}
+
+button {
+  font-size: 0.9em;
+  font-family:Arial, Helvetica, sans-serif;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+ table {
+   font-size: 0.8em;
+   font-family: Arial, Helvetica, sans-serif;
+   border-collapse: collapse;
+   width: 100%;
+ }
+
+ td, th {
+     border: 1px solid DarkOliveGreen;
+     padding: 8px;
+ }
+
+ tr:nth-child(even){background-color: LightGreen;}
+
+ tr:hover {background-color: DarkOliveGreen;}
+
+ th {
+     padding-top: 10px;
+     padding-bottom: 10px;
+     text-align: left;
+     background-color: Green;
+     color: white;
+ }
+
+

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AnalysisDataService } from '../analysis-data.service';
 import { DayService } from '../day.service';
+import { UpdaterService } from '../updater.service';
 
 @Component({
   selector: 'app-overview-hours-project',
@@ -18,18 +19,17 @@ export class OverviewHoursProjectComponent implements OnInit {
 
   constructor(
     private dayService: DayService,
-    private analysisDataService: AnalysisDataService
+    private analysisDataService: AnalysisDataService,
+    private updaterService: UpdaterService
   ) { }
 
   ngOnInit() {
-    this.getAnalysisData();
+    this.handleNewMonth(this.dayService.getMonth());
+    this.dayService.getMonthObs().subscribe(newMonth => this.handleNewMonth(newMonth));
+    this.updaterService.getUpdates().subscribe(() => this.handleNewMonth(this.dayService.getMonth());
   }
 
-  getAnalysisData(): void {
-    this.analysisDataService.getProjectHours(this.dayService.getMonth())
-      .subscribe(analysisData => this.analysisData = analysisData)
-    this.dayService.getMonthObs().subscribe(
-      newMonth => this.analysisDataService.getProjectHours(newMonth)
-        .subscribe(analysisData => this.analysisData = analysisData));
+  private handleNewMonth(newMonth: string): void {
+    this.analysisDataService.getProjectHours(newMonth).subscribe(analysisData => this.analysisData = analysisData);
   }
 }

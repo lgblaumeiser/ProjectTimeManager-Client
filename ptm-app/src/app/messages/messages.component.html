@@ -3,11 +3,8 @@
 
  Licensed under MIT license
 -->
-<div *ngIf="messageService.messages.length" class="message_border">
-
+<div *ngIf="messageService.messages.length" class="block2">
   <h2>Messages</h2>
-  <button class="clear"
-          (click)="messageService.clear()">Clear</button>
-  <div *ngFor='let message of messageService.messages' class="message_body"> {{message}} </div>
-
+  <button class="clear" (click)="messageService.clear()">Clear</button>
+  <div *ngFor='let message of messageService.messages' class="message_body">{{ message }}</div>
 </div>

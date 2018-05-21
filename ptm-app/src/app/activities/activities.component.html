@@ -3,6 +3,28 @@
 
  Licensed under MIT license
 -->
-<p>
-  activities works!
-</p>
+<h2>Available Activities</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Activity Name</th>
+    <th>Booking Number/th>
+    <th>Hidden</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let activity of activities" [class.selected]="activity === selectedActivity" (click)="onSelect(activity)">
+    <td>{{ activity.activityName }}</td>
+    <td>{{ activity.bookingNumber }}</td>
+    <td>{{ activity.hidden }}</td>
+  </tr>
+  </tbody>
+</table>
+<h2 class="subpart">Activity Details</h2>
+<div><label>Activity Name:</label><input [(ngModel)]="selectedActivity.activityName" placeholder="activity name" /></div>
+<div><label>Booking Number:</label><input [(ngModel)]="selectedActivity.bookingNumber" placeholder="booking number" /></div>
+<div><label>Hidden:</label><input type="checkbox" [(ngModel)]="selectedActivity.hidden" /></div>
+<div>
+  <button (click)="add()">Add</button>
+  <button (click)="change()">Change</button>
+</div>

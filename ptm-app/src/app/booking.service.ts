@@ -10,7 +10,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Activity } from './activity';
 import { Booking } from './booking';
-
 import { MessageService } from './message.service';
 
 const httpOptions = {
@@ -32,14 +31,40 @@ export class BookingService {
     );
   }
 
-/*  updateBooking(booking: Booking): Observable<any> {
-    return this.http.put(`${this.bookingsUrl}${this.day}/${booking.id}`, booking, httpOptions).pipe(
+  addBooking(booking: Booking): Observable<Booking> {
+    var sendData = new BookingData();
+    sendData.activityId = booking.activity.id.toString();
+    sendData.user = booking.user;
+    sendData.starttime = booking.starttime;
+    sendData.endtime = booking.endtime;
+    sendData.comment = booking.comment;
+    return this.http.post(`${this.bookingsUrl}${booking.bookingday}`, sendData, httpOptions).pipe(
+      tap(_ => this.log(`added booking`)),
+      catchError(this.handleError<any>('addBooking'))
+    );
+  }
+
+  updateBooking(booking: Booking): Observable<any> {
+    var sendData = new BookingData();
+    sendData.activityId = booking.activity.id.toString();
+    sendData.user = booking.user;
+    sendData.starttime = booking.starttime;
+    sendData.endtime = booking.endtime;
+    sendData.comment = booking.comment;
+    return this.http.post(`${this.bookingsUrl}${booking.bookingday}/${booking.id}`, sendData, httpOptions).pipe(
       tap(_ => this.log(`updated booking id=${booking.id}`)),
       catchError(this.handleError<any>('updateBooking'))
     );
-  }*/
+  }
 
-  private log(message: string) {
+  deleteBooking(booking: Booking): Observable<any> {
+    return this.http.delete(`${this.bookingsUrl}${booking.bookingday}/${booking.id}`).pipe(
+      tap(_ => this.log(`deleted booking id=${booking.id}`)),
+      catchError(this.handleError<any>('deleteBooking'))
+    );
+  }
+
+  private log(message: string): void {
     this.messageService.add('BookingService: ' + message);
   }
 
@@ -62,4 +87,12 @@ export class BookingService {
       return of(result as T);
     };
   }
+}
+
+class BookingData {
+  activityId: string;
+  user: string;
+  starttime: string;
+  endtime: string;
+  comment: string;
 }

@@ -14,8 +14,8 @@ export class UserService {
 
   constructor() { }
 
-  getUser(): Observable<string> {
-    return of(this.currentUser)
+  getUser(): string {
+    return this.currentUser
   }
 
   setUser(newUser: string): void {

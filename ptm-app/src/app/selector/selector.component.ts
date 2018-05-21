@@ -9,7 +9,6 @@ import { tap } from 'rxjs/operators';
 
 import { DayService } from '../day.service';
 import { UserService } from '../user.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-selector',
@@ -22,14 +21,12 @@ export class SelectorComponent implements OnInit {
 
   constructor(
     private dayService: DayService,
-    private userService: UserService,
-    private messageService: MessageService
+    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.getDay();
-    this.getUser();
-    this.log(`Initialized, day: ${this.day}`);
+    this.user = this.userService.getUser();
   }
 
   getDay(): void {
@@ -37,16 +34,8 @@ export class SelectorComponent implements OnInit {
     this.dayService.getDayObs().subscribe(day => this.day = day);
   }
 
-  getUser(): void {
-    this.userService.getUser().subscribe(user => this.user = user);
-  }
-
   onSelect(): void {
     this.dayService.setDay(this.day);
     this.userService.setUser(this.user);
-  }
-
-  private log(message: string) {
-    this.messageService.add('SelectorComponent: ' + message);
   }
 }

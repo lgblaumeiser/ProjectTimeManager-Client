@@ -3,19 +3,18 @@
 
  Licensed under MIT license
 -->
-<h2>Booking Times Selected Month</h2>
-<table class="booking-times" *ngIf="analysisData">
-  <thead>
-    <tr>
-      <th *ngFor="let col of analysisData[0]">{{col}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of analysisData | slice:1">
-      <td *ngFor="let col of row">{{col}}</td>
-    </tr>
-  </tbody>
-</table>
-
+  <h2>Booking Times Selected Month</h2>
+  <table class="booking-times" *ngIf="analysisData">
+    <thead>
+      <tr>
+        <th *ngFor="let col of analysisData[0]">{{col}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of analysisData | slice:1">
+        <td *ngFor="let col of row">{{col}}</td>
+      </tr>
+    </tbody>
+  </table>
 
 

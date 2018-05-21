@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AnalysisDataService } from '../analysis-data.service';
 import { DayService } from '../day.service';
+import { UpdaterService } from '../updater.service';
 
 @Component({
   selector: 'app-overview-hours-day',
@@ -18,18 +19,17 @@ export class OverviewHoursDayComponent implements OnInit {
 
   constructor(
     private dayService: DayService,
-    private analysisDataService: AnalysisDataService
+    private analysisDataService: AnalysisDataService,
+    private updaterService: UpdaterService
   ) { }
 
   ngOnInit() {
-    this.getAnalysisData();
+    this.handleNewDay(this.dayService.getDay());
+    this.dayService.getDayObs().subscribe(newDay => this.handleNewDay(newDay));
+    this.updaterService.getUpdates().subscribe(() => this.handleNewDay(this.dayService.getDay());
   }
 
-  getAnalysisData(): void {
-    this.analysisDataService.getProjectHours(this.dayService.getDay())
-      .subscribe(analysisData => this.analysisData = analysisData);
-    this.dayService.getDayObs().subscribe(
-      newDay => this.analysisDataService.getProjectHours(newDay)
-        .subscribe(analysisData => this.analysisData = analysisData));
+  private handleNewDay(newDay: string): void {
+    this.analysisDataService.getProjectHours(newDay).subscribe(analysisData => this.analysisData = analysisData);
   }
 }

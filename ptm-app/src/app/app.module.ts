@@ -10,10 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BookingsComponent } from './bookings/bookings.component';
-import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { AppRoutingModule } from './/app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SelectorComponent } from './selector/selector.component';
 import { OverviewHoursDayComponent } from './overview-hours-day/overview-hours-day.component';
 import { OverviewHoursWorkedComponent } from './overview-hours-worked/overview-hours-worked.component';
@@ -24,9 +21,7 @@ import { ActivitiesComponent } from './activities/activities.component';
   declarations: [
     AppComponent,
     BookingsComponent,
-    BookingDetailComponent,
     MessagesComponent,
-    DashboardComponent,
     SelectorComponent,
     OverviewHoursDayComponent,
     OverviewHoursWorkedComponent,
@@ -36,8 +31,7 @@ import { ActivitiesComponent } from './activities/activities.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,
-    AppRoutingModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

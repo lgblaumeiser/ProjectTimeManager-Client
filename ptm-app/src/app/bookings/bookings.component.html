@@ -3,32 +3,36 @@
 
  Licensed under MIT license
 -->
-<div class="row">
-  <div class="column"><div class="part">
-    <h2>Booking for {{ bookingday }}</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Starttime</th>
-          <th>Endtime</th>
-          <th>Activity Name</th>
-          <th>BookingNumber</th>
-          <th>Comment</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let booking of bookings" (click)="onSelect(booking)">
-          <td>{{ booking.starttime }}</td>
-          <td>{{ booking.endtime }}</td>
-          <td>{{ booking.activity.activityName }}</td>
-          <td>{{ booking.activity.bookingNumber }}</td>
-          <td>{{ booking.comment }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div></div>
-  <div class="column">
-    <div class="part-top"><app-booking-detail [booking]="selectedBooking"></app-booking-detail></div>
-    <div class="part"><app-overview-hours-day></app-overview-hours-day></div>
+  <h2>Booking for {{ bookingday }}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Starttime</th>
+        <th>Endtime</th>
+        <th>Activity Name</th>
+        <th>Booking Number</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of bookings" [class.selected]="booking === selectedBooking" (click)="onSelect(booking)">
+        <td>{{ booking.starttime }}</td>
+        <td>{{ booking.endtime }}</td>
+        <td>{{ booking.activity.activityName }}</td>
+        <td>{{ booking.activity.bookingNumber }}</td>
+        <td>{{ booking.comment }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="subpart">Booking Details</h2>
+  <div><label>Starttime:</label><input [(ngModel)]="selectedBooking.starttime" placeholder="starttime" /></div>
+  <div><label>Endtime:</label><input [(ngModel)]="selectedBooking.endtime" placeholder="endtime" /></div>
+  <div><label>Activity:</label><select [(ngModel)]="selectedBooking.activity">
+    <option *ngFor="let activity of activities" [ngValue]="activity">{{ activity.activityName }}</option>
+  </select></div>
+  <div><label>Comment:</label><input [(ngModel)]="selectedBooking.comment" placeholder="comment" /></div>
+  <div>
+    <button (click)="add()">Add</button><br/>
+    <button (click)="change()">Change</button><br/>
+    <button (click)="delete()">Delete</button>
   </div>
-</div>
